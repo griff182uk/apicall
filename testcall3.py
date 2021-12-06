@@ -11,7 +11,8 @@ class Astronaut ():
         self.craft = craft
     
     def get_astronaut_details(self):
-        print(f"<p>Hello I am {self.name} and I am in the spacecraft {self.craft}.</p>")
+        detail = (f"<p>Hello I am {self.name} and I am in the spacecraft {self.craft}.</p>")
+        return detail
 
 class Astronauts(object):
     def __init__(self):
@@ -31,15 +32,15 @@ class Astronauts(object):
         self.astronauts = list(filter(lambda d: d['craft'] in craft, self.astronauts))
 
     def get_astronauts_html(self):
+        html = ""
         for key in self.astronauts:
             name = (key['name'])
             craft = (key['craft'])
             astronaut = Astronaut(name,craft)
-            astronaut.get_astronaut_details()
-
+            html = html + astronaut.get_astronaut_details()
+        return html
 
 astronauts = Astronauts()
-#print(astronauts.get_payload())
 astronauts.filter_astronauts(craft)
-#print(astronauts.get_payload())
-astronauts.get_astronauts_html()
+html = astronauts.get_astronauts_html()
+print(html)
